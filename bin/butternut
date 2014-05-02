@@ -9,27 +9,51 @@ parsed_options = {}
 
 optparse = OptionParser.new do |opts|
   opts.banner = "Usage: butternut [some options]"
+
+  #Random cow
   opts.on('-r', '--randimal', 'Have a random animal give your advice') do 
     parsed_options[:randimal] = true
   end
-  opts.on('-l', '--list', 'List available animals') do
+
+  #List cows
+  opts.on('-l', '--list', 'List available cows') do
     puts Cow.cows
     exit
   end
 
-  opts.on('-a', '--animal [ANIMAL]', 'Select an animal') do |cow|
+  #List faces
+  opts.on('-lf', '--list-faces', 'List available faces') do
+    puts Cow.faces
+    exit
+  end
+
+  #Specify a cow
+  opts.on('-c', '--cow [COW]', 'Select a cow') do |cow|
     unless Cow.cows.include? cow
       puts "#{cow} is not a cow \nUse butternut -l for a list of cows"
       exit
     end
     parsed_options[:cow] = cow
   end
+
+  #Specify a face
+  opts.on('-f', '--face [FACE]', 'Select a face') do |face|
+    unless Cow.faces.include? face
+      puts "#{face} is not a face \nUse butternut -lf for a list of faces"
+      exit
+    end
+    parsed_options[:face] = face
+  end
+
+  #Set global options
   opts.on("--config set key value", Array, "Set your shit") do |list|
     key = ARGV[0]
     value = ARGV[1]
     ButternutSquash::Config::set(key, value)
     exit
   end
+
+  #Get help
   opts.on('-h', '--help', 'Help') do
     puts opts
     exit

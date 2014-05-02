@@ -21,12 +21,21 @@ module ButternutSquash
       elsif @options[:randimal]
         cow = Cow.cows.sample
       end
+      if @options[:face]
+        face = @options[:face]
+      end
+      return say_with_cow_and_face(cow, face, response) if cow && face
       return say_with_cow(cow, response) if cow
       puts response
     end
 
     def say_with_cow(cow, response)
       puts Cow.new({cow: cow}).say(response)
+    end
+
+    def say_with_cow_and_face(cow, face, response)
+      puts "cow face"
+      puts Cow.new({cow: cow, face_type: face}).say(response)
     end
 
     def base_url
