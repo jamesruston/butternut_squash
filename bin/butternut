@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'butternut_squash'
+
+butternut = ButternutSquash::Client.new
+puts butternut.random
