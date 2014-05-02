@@ -1,6 +1,42 @@
 #!/usr/bin/env ruby
 
 require 'butternut_squash'
+require_relative '../lib/butternut_squash/config'
+require 'optparse'
+require 'ruby_cowsay'
 
-butternut = ButternutSquash::Client.new
+parsed_options = {}
+
+optparse = OptionParser.new do |opts|
+  opts.banner = "Usage: butternut [some options]"
+  opts.on('-r', '--randimal', 'Have a random animal give your advice') do 
+    parsed_options[:randimal] = true
+  end
+  opts.on('-l', '--list', 'List available animals') do
+    puts Cow.cows
+    exit
+  end
+
+  opts.on('-a', '--animal [ANIMAL]', 'Select an animal') do |cow|
+    unless Cow.cows.include? cow
+      puts "#{cow} is not a cow \nUse butternut -l for a list of cows"
+      exit
+    end
+    parsed_options[:cow] = cow
+  end
+  opts.on("--config set key value", Array, "Set your shit") do |list|
+    key = ARGV[0]
+    value = ARGV[1]
+    ButternutSquash::Config::set(key, value)
+    exit
+  end
+  opts.on('-h', '--help', 'Help') do
+    puts opts
+    exit
+  end
+end
+optparse.parse!
+
+butternut = ButternutSquash::Client.new(parsed_options)
+
 puts butternut.random

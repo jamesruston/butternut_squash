@@ -6,8 +6,8 @@ require 'butternut_squash/version'
 Gem::Specification.new do |spec|
   spec.name          = "butternut_squash"
   spec.version       = ButternutSquash::VERSION
-  spec.authors       = ["James Ruston"]
-  spec.email         = ["jruston90@gmail.com"]
+  spec.authors       = ["James Ruston", "Dan Ellis"]
+  spec.email         = ["jruston90@gmail.com", "danny_ellis90@hotmail.com"]
   spec.summary       = %q{Excellent advice}
   spec.description   = %q{For developer who care}
   spec.homepage      = ""
@@ -21,4 +21,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
   spec.add_runtime_dependency "httparty"
+  spec.add_runtime_dependency "ruby_cowsay"
 end

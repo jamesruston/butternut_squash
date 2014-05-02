@@ -1,12 +1,32 @@
 require "butternut_squash/version"
 require 'httparty'
+require 'ruby_cowsay'
 
 module ButternutSquash
   class Client
     include HTTParty
 
+    def initialize(options)
+      @options = options
+    end
+
     def random
-      self.class.get "#{base_url}random"
+      response = self.class.get "#{base_url}random"
+      output_response(response)
+    end
+
+    def output_response(response)
+      if @options[:cow]
+        cow = @options[:cow]
+      elsif @options[:randimal]
+        cow = Cow.cows.sample
+      end
+      return say_with_cow(cow, response) if cow
+      puts response
+    end
+
+    def say_with_cow(cow, response)
+      puts Cow.new({cow: cow}).say(response)
     end
 
     def base_url
