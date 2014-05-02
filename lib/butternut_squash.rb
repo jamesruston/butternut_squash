@@ -6,11 +6,11 @@ module ButternutSquash
     include HTTParty
 
     def random
-      return "random"
+      self.class.get "#{base_url}random"
     end
 
     def base_url
-      ""
+      "http://arcane-hollows-3959.herokuapp.com/"
     end
   end
 end
