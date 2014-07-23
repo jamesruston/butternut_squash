@@ -1,6 +1,6 @@
 # ButternutSquash
 
-TODO: Write a gem description
+A ruby gem to give you random snippets of wisdom.
 
 ## Installation
 
@@ -14,6 +14,9 @@ Get some random advice
 
     $ butternut
 
+Or explore your options
+
+    $ butternut -h
 
 ## Contributing
 
