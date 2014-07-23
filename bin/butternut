@@ -22,7 +22,7 @@ optparse = OptionParser.new do |opts|
   end
 
   #List faces
-  opts.on('-lf', '--list-faces', 'List available faces') do
+  opts.on('-z', '--list-faces', 'List available faces') do
     puts Cow.faces
     exit
   end
@@ -39,14 +39,14 @@ optparse = OptionParser.new do |opts|
   #Specify a face
   opts.on('-f', '--face [FACE]', 'Select a face') do |face|
     unless Cow.faces.include? face
-      puts "#{face} is not a face \nUse butternut -lf for a list of faces"
+      puts "#{face} is not a face \nUse butternut -z for a list of faces"
       exit
     end
     parsed_options[:face] = face
   end
 
   #Set global options
-  opts.on("--config set key value", Array, "Set your shit") do |list|
+  opts.on("--config set key value", Array, "Set your shiz") do |list|
     key = ARGV[0]
     value = ARGV[1]
     ButternutSquash::Config::set(key, value)
