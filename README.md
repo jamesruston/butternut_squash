@@ -4,15 +4,7 @@ TODO: Write a gem description
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'butternut_squash'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install:
 
     $ gem install butternut_squash
 
